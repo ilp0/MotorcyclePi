@@ -48,7 +48,8 @@ x = 0
 
 
 # Load default font.
-font = ImageFont.load_default()
+font = ImageFont.truetype('fonts/ModernDOS9x16.ttf', 48)
+font2 = ImageFont.truetype('fonts/ModernDOS9x16.ttf', 16)
 current_display = 0
 dataview = ""
 while True:
@@ -62,12 +63,13 @@ while True:
 
     if current_display == 1:
         now = datetime.datetime.now()
-        dataview = "%02s:%02s" % (now.hour, now.minute)
+        dataview = "%02s:%02s" % (now.hour + 3, now.minute)
    
     # Clear
     draw.rectangle((0,0,width,height), outline=0, fill=0)
     # Draw temperature and time text.
     draw.text((x, top), dataview, font=font, fill=255)
+    draw.text((x, top+48), "custom text", font=font2, fill=255)
     # Display image.
     disp.image(image)
     disp.display()
