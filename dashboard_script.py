@@ -1,4 +1,4 @@
-import bmp280.py
+import bmp280
 import datetime
 import time
 
@@ -49,20 +49,30 @@ x = 0
 
 # Load default font.
 font = ImageFont.load_default()
-
+current_display = 0
+dataview = ""
 while True:
+    
+    if current_display == 0:
+        
+        # Read temperature from bmp280
+        temperature, pressure, humidity = bmp280.readBME280All()
+        # Get current time
+        dataview = str(temperature) + " C"
 
-    # Read temperature from bmp280
-    temperature, pressure, humidity = bmp280.readBME280All()
-    # Get current time
-    now = datetime.datetime.now()
+    if current_display == 1:
+        now = datetime.datetime.now()
+        dataview = "%02s:%02s" % (now.hour, now.minute)
+   
     # Clear
     draw.rectangle((0,0,width,height), outline=0, fill=0)
     # Draw temperature and time text.
-    draw.text((x, top),     "Temperature: " + str(temperature), font=font, fill=255)
-    draw.text((x, top+8),   "Time: " + "%02s:%02s" % (now.hour, now.minute), font=font, fill=255)
-
+    draw.text((x, top), dataview, font=font, fill=255)
     # Display image.
     disp.image(image)
     disp.display()
-time.sleep(.1)
+    if current_display == 0:
+        current_display = 1
+    else:
+        current_display = 0
+    time.sleep(5)
