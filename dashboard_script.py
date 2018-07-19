@@ -28,12 +28,11 @@ disp.clear()
 disp.display()
 
 # Create blank image for drawing.
-# Make sure to create image with mode '1' for 1-bit color.
 width = disp.width
 height = disp.height
 image = Image.new('1', (width, height))
 
-# Get drawing object to draw on image.
+# Get drawing object to draw on image
 draw = ImageDraw.Draw(image)
 
 # Draw a black filled box to clear the image.
@@ -51,16 +50,15 @@ x = 0
 # Load default font.
 font = ImageFont.load_default()
 
-# Alternatively load a TTF font.  Make sure the .ttf font file is in the same directory as the python script!
-# Some other nice fonts to try: http://www.dafont.com/bitmap.php
-# font = ImageFont.truetype('Minecraftia.ttf', 8)
-
 while True:
 
+    # Read temperature from bmp280
     temperature, pressure, humidity = bmp280.readBME280All()
+    # Get current time
     now = datetime.datetime.now()
+    # Clear
     draw.rectangle((0,0,width,height), outline=0, fill=0)
-
+    # Draw temperature and time text.
     draw.text((x, top),     "Temperature: " + str(temperature), font=font, fill=255)
     draw.text((x, top+8),   "Time: " + "%02s:%02s" % (now.hour, now.minute), font=font, fill=255)
 
