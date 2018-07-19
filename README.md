@@ -7,6 +7,8 @@ This project could be used for any motorcycle.
 - Current time display ✓
 - Dashcam
 - GPS Tracking and logging
+- Trip counter and logging
+   * Estimated mileage left
 
 ## Hardware
 - Raspberry Pi 3 ✓
@@ -18,9 +20,10 @@ This project could be used for any motorcycle.
 - 0.96" SPI OLED Screen (for time and temperature) ✓
     * Required: [Adafruit Python SSD1306 Library](https://github.com/adafruit/Adafruit_Python_SSD1306)
 - External drive for saving dashcam footage. ✓
-    * I'm using a 64GB thumbdrive
+    * e.g. 64GB thumbdrive
 - GPS Chip/usb
 - Magnetic Reed switches for gear indicator ✓
+- Magnet
 - 7-segment display 
 - Enclosure
     * 3D-print ?
